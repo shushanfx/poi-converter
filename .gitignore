@@ -1,0 +1,11 @@
+dist/**
+
+.git
+.vscode
+.DS_Store
+
+*.iml
+.idea
+target
+
+
