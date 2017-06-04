@@ -13,3 +13,9 @@ git clone https://github.com/shushanfx/poi-converter.git
 # After develop
 mvn clean package
 ```
+
+## Change log
+* 2017-6-5
+    * Fix bugs for chinese when converting docx to pdf.
+* 2017-6-2
+    * Create the project.

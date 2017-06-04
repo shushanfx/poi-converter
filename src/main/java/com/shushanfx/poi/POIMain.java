@@ -1,5 +1,6 @@
 package com.shushanfx.poi;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -39,6 +40,7 @@ public class POIMain {
             converter = new PPT2PDF();
         }
         if (converter != null) {
+            guaranteeParent(dst);
             converter.convert(src, dst);
         }
         else{
@@ -54,5 +56,15 @@ public class POIMain {
 
     public static void usage() {
         System.out.println("Usage: POIMain fromFile toFile\n Only .doc, .docx, .ppt, .pptx are supported.");
+    }
+
+    private static void guaranteeParent(String path){
+        File file = new File(path);
+        File parentFile = file.getParentFile();
+        if(parentFile!=null){
+            if(!parentFile.exists()){
+                parentFile.mkdirs();
+            }
+        }
     }
 }

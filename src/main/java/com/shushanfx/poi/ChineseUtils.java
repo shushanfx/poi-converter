@@ -11,6 +11,9 @@ import org.apache.poi.sl.usermodel.Shape;
 import org.apache.poi.sl.usermodel.Slide;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.apache.poi.xslf.usermodel.XSLFTextShape;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 import java.util.List;
 
@@ -53,5 +56,17 @@ public final class ChineseUtils {
                 }
             });
         });
+    }
+
+    public static void forChinese(XWPFDocument document){
+        List<XWPFParagraph> paragraphs = document.getParagraphs();
+        for(XWPFParagraph paragraph : paragraphs){
+            List<XWPFRun> runs = paragraph.getRuns();
+            if(runs!=null && runs.size() > 0){
+                runs.forEach(run -> {
+                    run.setFontFamily("宋体");
+                });
+            }
+        }
     }
 }

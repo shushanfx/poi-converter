@@ -16,6 +16,7 @@ public class DOCX2PDF implements POIConverter {
         OutputStream out = new FileOutputStream(dst);
         try{
             XWPFDocument document = new XWPFDocument(input);
+            ChineseUtils.forChinese(document);
             PdfOptions options = PdfOptions.create();
             PdfConverter.getInstance().convert(document, out, options);
         } finally {
