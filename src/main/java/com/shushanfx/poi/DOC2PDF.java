@@ -19,20 +19,18 @@ public class DOC2PDF extends DOCX2PDF {
     public void convert(String src, String dst) throws IOException {
         try {
             super.convert(src, dst);
-            return;
+            return ;
         } catch (Exception e) {
             System.out.println("Can't convert with XWPF.");
         }
         oldConvert(src, dst);
+    }
 
+    private void newConvert(String src, String dst) throws IOException {
 
     }
 
-    public void newConvert(String src, String dst) throws IOException {
-
-    }
-
-    public void oldConvert(String src, String dst) throws IOException {
+    private void oldConvert(String src, String dst) throws IOException {
         HWPFDocument doc = null;
         WordExtractor we = null;
         Document pdfDocument = null;
@@ -46,9 +44,7 @@ public class DOC2PDF extends DOCX2PDF {
             pdfWriter.open();
             pdfDocument.open();
             for (String text : we.getParagraphText()) {
-                BaseFont bf = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
-                Font font = new Font(bf, 14);
-                pdfDocument.add(new Paragraph(text, font));
+                pdfDocument.add(new Paragraph(text));
             }
         } catch (DocumentException e) {
             e.printStackTrace();

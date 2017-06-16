@@ -1,10 +1,16 @@
 package com.shushanfx.poi;
 
+import com.lowagie.text.Font;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.pdf.BaseFont;
+import fr.opensagres.xdocreport.itext.extension.font.IFontProvider;
 import org.apache.poi.xwpf.converter.pdf.PdfConverter;
 import org.apache.poi.xwpf.converter.pdf.PdfOptions;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
+import java.awt.*;
 import java.io.*;
+import java.net.URISyntaxException;
 
 /**
  * Created by dengjianxin on 2017/6/2.
@@ -17,8 +23,10 @@ public class DOCX2PDF implements POIConverter {
         try{
             XWPFDocument document = new XWPFDocument(input);
             ChineseUtils.forChinese(document);
-            PdfOptions options = PdfOptions.create();
-            PdfConverter.getInstance().convert(document, out, options);
+            PdfOptions pdfOptions = PdfOptions.create();
+            PdfConverter.getInstance().convert(document, out, pdfOptions);
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             input.close();
             out.close();
